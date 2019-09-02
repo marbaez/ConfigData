@@ -1,0 +1,21 @@
+server:
+  port: 8091
+
+spring:
+  data:
+    mongodb:
+      host: "localhost"
+      port: "27017"
+      username: "root"
+      password: "example"
+      database: "datacollector"
+      authentication-database: "admin"
+
+jwt:
+  expiration-sec: 120000
+  clock-skew-sec: 320
+
+users:
+  gloabl-admin:
+    user: develop
+    password: R3nac3ns
