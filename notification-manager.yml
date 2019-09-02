@@ -1,0 +1,38 @@
+server:
+  port: 8092
+  host: notification-manager
+  description: "Sample Notifier for subscriptions"
+  secured: false
+  endpoints:
+    subscription: "/subscriptions"
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: genesisv2.prueba@gmail.com
+    password: developer_rena
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+data-collector:
+  name: data-collector
+
+tokenprovider:
+  baseUrl : http://${data-collector.name}
+  loginpath: "/public/users/login"
+  user: ${TOKEN_PROVIDER_USER:develop}
+  password: ${TOKEN_PROVIDER_PASSWORD:R3nac3ns}
+
+datamanager:
+  baseUrl: http://${data-collector.name}
+  timeoutInSeconds: 10
+  endpoints:
+    subscription: "/api/v1.0/subscriptions"
+    register: "/api/v1.0/notifiers"
+    deregister: "/api/v1.0/notifiers/{id}"
+    groupfilter: "/api/v1.0/metrics/{id}/groupFilter"
